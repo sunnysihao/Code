@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include #--录url的函数
-
+from django.conf.urls.static import static#静态文件服务声明
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sales/', include('sales.urls')),
-]
+    path('api/mgr/',include('mgr.urls')),
+] +  static("/", document_root="./z_dist")
+#  + 号这一句是为了让django可以处理静态资源 找不到对应url的时候去往z.dist下边执行HTTP文件
